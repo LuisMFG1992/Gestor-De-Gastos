@@ -13,9 +13,11 @@ let gasto = null;
 
 // ******************* RECOPILACION DE DATOS USUARIO *******************//
 
-let nombreDelUsuario = prompt("Hola! por favor ingrese su nombre."); 
+// let nombreDelUsuario = prompt("Hola! por favor ingrese su nombre."); 
 
-let montoDisponible = parseInt(prompt(`Bienvenido ${nombreDelUsuario}, para poder empezar necesitarimos definir de cuantos pesos es tu ingreso mensual luego de impuestos.`));
+// parseInt(prompt(`Bienvenido ${nombreDelUsuario}, para poder empezar necesitarimos definir de cuantos pesos es tu ingreso mensual luego de impuestos.`));
+
+let montoDisponible = 1000;
 
 document.getElementById("sumatoriaIngresos").innerHTML = montoDisponible;
 // document.getElementById("restante").innerHTML = restandoGasto;
