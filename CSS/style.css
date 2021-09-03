@@ -1,0 +1,74 @@
+@import url('https://fonts.googleapis.com/css2?family=Bree+Serif&family=Manrope:wght@300&display=swap');
+* {
+    font-family: 'Bree Serif', serif;
+    font-weight: lighter;
+}
+
+.encabezado {
+    display: flex;
+    justify-content: space-evenly;
+    background: rgba(128, 128, 128, 0.439);
+}
+
+.encabezado__titulo {
+    font-size: 1.2rem;
+    text-align: center;
+}
+
+.marcoNuevoGasto {
+    background: rgba(128, 128, 128, 0.282);
+    padding-top: 1rem;
+    
+}
+
+.marcoNuevoGasto__titulo {
+    text-align: center;
+    margin: 0;
+}
+
+.marcoNuevoGasto__labels {
+    font-size: 1rem;
+    border: 1.5px solid transparent;
+    padding: 0 1rem;
+    /* display: inline-block;
+    width: 20rem;
+    text-align: right; */
+}
+
+.marcoNuevoGasto__marcoInputs {
+    display: flex;
+    justify-content: center;
+    padding: 1rem
+
+}
+
+.marcoListaDeGastos {
+    text-align: center;
+}
+
+.boton {
+    margin: 0 1rem;    
+}
+
+
+/*************** DINAMICO ****************/
+
+
+/*** TABLA DE GASTOS ***/
+.border {
+    /* border: 1px solid black; */
+    width: 50%;
+    margin: auto;
+}
+
+.celdasConTitulos {
+    font-size:1.2rem;
+    color: rgb(0, 0, 0);
+    border: 1.5px solid black;
+    background: rgba(128, 128, 128, 0.439);    
+}
+
+.celdasConDatos {
+    border: 1.5px solid black;
+    font-size: 1.2rem;
+}

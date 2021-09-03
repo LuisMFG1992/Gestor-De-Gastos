@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="CSS/normalize.css">
+    <link rel="stylesheet" href="CSS/style.css">
+</head>
+<body>
+    <header class="encabezado">
+        <h2 class="encabezado__titulo">
+            Ingresos: 
+            <p id="sumatoriaIngresos" class="encabezado__ingresos">
+                
+            </p>
+        </h2>
+        
+        <h2 class="encabezado__titulo">
+            Gastos: 
+            <p id="sumatoriaGastos" class="encabezado__gastos">
+                
+            </p>
+        </h2>
+        
+        <h2 class="encabezado__titulo">
+            Disponible: 
+            <p id="restante" class="encabezado__disponible">
+                
+            </p>
+        </h2>
+        
+    </header>
+    
+    <section class="marcoNuevoGasto">
+        <h3 class="marcoNuevoGasto__titulo">
+            Nuevo Gasto
+        </h3>
+        <div class="marcoNuevoGasto__marcoInputs">
+
+            <label for="descripcionNuevoGasto" class="marcoNuevoGasto__labels">Descripción:</label>
+            
+                <input type="text" name="descripcionNuevoGasto" id="descripcionNuevoGasto" class="marcoNuevoGasto__inputsGastos">
+            
+            
+            <label for="montoNuevoGasto" class="marcoNuevoGasto__labels">Monto:</label>
+            
+                <input type="number" name="montoNuevoGasto" id="montoNuevoGasto" class="marcoNuevoGasto__inputsGastos">
+                
+            
+            <button id="boton" class="boton">Agregar</button>
+        
+        </div>
+            
+        </section>
+    
+    <section class="marcoListaDeGastos">
+        <h3 class="marcoListaDeGastos__titulo">Gastos Registrados</h3>
+        <div id="listaDeGastos">
+            
+        </div>
+    </section>
+    <script src="JS/main.js"></script>
+</body>
+</html>
