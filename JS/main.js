@@ -1,3 +1,7 @@
+//** SE BORRARAN LOS DATOS GUARDADOS EN EL LISTADAGASTOS CADA QUE SE RECARGUE LA PAGINA */
+
+sessionStorage.removeItem("listadaGastos")
+
 // ******************* VARIABLES NULL *******************//
 
 let montoDelMovimiento = null;
@@ -57,13 +61,22 @@ function agregarGastoALista(){
     
     gastos.push(gasto);
 
+    let gastosJSON = JSON.stringify(gastos);
+
+    sessionStorage.setItem("listadaGastos", gastosJSON);
+
+
+    let gastosRecuperadosLS = sessionStorage.getItem("listadaGastos");
+
+    let gastosRevertidosLS = JSON.parse(gastosRecuperadosLS)
+
     let tablaGastos = `<table class="border">
                             <tr class="border">
                                 <th class="celdasConTitulos">Descripción</th>
                                 <th class="celdasConTitulos">Monto</th>    
                             </tr>`
     
-    for (let i = 0; i < gastos.length; i++) {
+    for (let i = 0; i < gastosRevertidosLS.length; i++) {
         tablaGastos +=
             `<tr>
                 <td class="celdasConDatos">${gastos[i].descripcion}</td>
