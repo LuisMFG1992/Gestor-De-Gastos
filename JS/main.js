@@ -92,8 +92,3 @@ document.getElementById("boton").onclick = () => {agregarGastoALista()};
 
 
 
-
-
-//*** TODO: Ver como capturar el texto del input crear nueva categoria e inyectarlo en el select de filtros. Cuando sepa como obtener el texto del input ver si puedo tambien obtenerlo del option del select, sino entonces que la palabra que se obtiene del input crear nueva categoria tambien se concatene con el valor del nuevo option */
-
-
