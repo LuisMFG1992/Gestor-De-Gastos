@@ -79,9 +79,12 @@ function agregarGastoALista(){
     tablaGastos += `</table>`
 
     document.getElementById("listaDeGastos").innerHTML = tablaGastos;
+
 };
 
-
+$("#BotonCrearCategoria").on("click", () => {
+    alert("Hola")
+})
 
 // ******************* EVENTOS *******************//
 
