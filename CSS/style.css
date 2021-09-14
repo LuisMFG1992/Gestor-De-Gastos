@@ -51,6 +51,30 @@
 }
 
 
+
+
+
+
+
+.marcoFiltros {
+    background: rgb(155, 153, 153);
+    padding: 1rem;
+}
+
+
+.marcoFiltros__titulo {
+    text-align: center;
+    margin: 0;
+    padding-bottom: 1rem;
+}
+
+.marcoFiltros__inputs {
+    display:flex;
+    justify-content: space-evenly;
+    
+}
+
+
 /*************** DINAMICO ****************/
 
 

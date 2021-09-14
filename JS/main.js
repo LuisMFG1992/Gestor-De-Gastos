@@ -2,6 +2,8 @@
 
 sessionStorage.removeItem("listadaGastos")
 
+
+
 // ******************* VARIABLES NULL *******************//
 
 let montoDelMovimiento = null;
@@ -25,17 +27,9 @@ document.getElementById("sumatoriaIngresos").innerHTML = montoDisponible;
 let gastos = []; 
 
 
-
-
 // ******************* FUNCIONES *******************//
 
 
-
-
-
-// ******************* EVENTOS *******************//
-
-document.getElementById("boton").onclick = () => {agregarGastoALista()};
 
 function agregarGastoALista(){
     
@@ -45,9 +39,12 @@ function agregarGastoALista(){
     
     restandoGasto = montoDisponible -  montoDelMovimiento;
     
+    let categoriaSeleccionada = document.getElementById('selectorDeCategorias').value;
+    
     gasto = {
         descripcion: descripcionDelMovimiento, 
-        monto: montoDelMovimiento
+        monto: montoDelMovimiento,
+        categoria: categoriaSeleccionada
     }
     
     gastos.push(gasto);
@@ -60,9 +57,11 @@ function agregarGastoALista(){
     let gastosRecuperadosLS = sessionStorage.getItem("listadaGastos");
 
     let gastosRevertidosLS = JSON.parse(gastosRecuperadosLS)
+    
 
     let tablaGastos = `<table class="border">
                             <tr class="border">
+                                <th class="celdasConTitulos">Categoria</th>    
                                 <th class="celdasConTitulos">Descripción</th>
                                 <th class="celdasConTitulos">Monto</th>    
                             </tr>`
@@ -70,6 +69,7 @@ function agregarGastoALista(){
     for (let i = 0; i < gastosRevertidosLS.length; i++) {
         tablaGastos +=
             `<tr>
+                <td class="celdasConDatos">${gastos[i].categoria}</td>
                 <td class="celdasConDatos">${gastos[i].descripcion}</td>
                 <td class="celdasConDatos">${gastos[i].monto}</td>
             </tr>
@@ -79,5 +79,18 @@ function agregarGastoALista(){
     tablaGastos += `</table>`
 
     document.getElementById("listaDeGastos").innerHTML = tablaGastos;
-
 };
+
+
+
+// ******************* EVENTOS *******************//
+
+document.getElementById("boton").onclick = () => {agregarGastoALista()};
+
+
+
+
+
+//*** TODO: Ver como capturar el texto del input crear nueva categoria e inyectarlo en el select de filtros. Cuando sepa como obtener el texto del input ver si puedo tambien obtenerlo del option del select, sino entonces que la palabra que se obtiene del input crear nueva categoria tambien se concatene con el valor del nuevo option */
+
+

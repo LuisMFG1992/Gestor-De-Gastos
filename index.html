@@ -33,11 +33,45 @@
         
     </header>
     
+    <section class="marcoFiltros">
+        <h3 class="marcoFiltros__titulo">Filtros</h3>
+        
+        <div class="marcoFiltros__inputs">
+                
+            <div class="select">
+                <label for="filtrar">Filtrar por: </label>
+                <select id="categoria" onChange="seleccionarCategoria()">
+                    <option id="todo" value="Todo">Todo</option>
+                </select>
+            </div>
+
+            <div class="marcoFiltros__nuevaCategoria">
+                <label for="crearCategoria">Crear nueva categoria: </label>
+                <input type="text" name="" id="crearCategoria">
+                <button type="submit">Crear</button>
+            </div>
+
+        </div>
+        
+    </section>
+
     <section class="marcoNuevoGasto">
         <h3 class="marcoNuevoGasto__titulo">
             Nuevo Gasto
         </h3>
         <div class="marcoNuevoGasto__marcoInputs">
+
+            <label for="categoriaNuevoGasto" class="marcoNuevoGasto__labels">Categoria:</label>
+            <select id="selectorDeCategorias" onChange="seleccionarCategoria()">
+                <option value="Sin categoria">Sin categoria</option>
+                <option value="Casa">Casa</option>
+                <option value="Auto">Auto</option>
+                <option value="Alimentos">Alimentos</option>
+                <option value="Entretenimiento">Entretenimiento</option>
+
+            </select>
+            
+            <!-- <input type="text" name="categoriaNuevoGasto" id="categoriaNuevoGasto" class="marcoNuevoGasto__inputsGastos"> -->
 
             <label for="descripcionNuevoGasto" class="marcoNuevoGasto__labels">Descripción:</label>
             
@@ -61,6 +95,7 @@
             
         </div>
     </section>
+
     
     <script src="JS/main.js"></script>
 </body>
