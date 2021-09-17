@@ -9,98 +9,99 @@
     <link rel="stylesheet" href="CSS/style.css">
 </head>
 <body>
-    <header class="encabezado">
-        <h2 class="encabezado__titulo">
-            Ingresos: 
-            <p id="sumatoriaIngresos" class="encabezado__ingresos">
+    <main class="contenedor">
+        <header class="encabezado">
+            <h3 class="encabezado__tituloPrincipal">BALANCES</h3>
+            <div class="encabezado__marco">
                 
-            </p>
-        </h2>
-        
-        <h2 class="encabezado__titulo">
-            Gastos: 
-            <p id="sumatoriaGastos" class="encabezado__gastos">
+                <h2 class="encabezado__titulo">
+                    Ingresos: 
+                    
+                </h2>
+                <p id="sumatoriaIngresos" class="encabezado__montos"></p>
                 
-            </p>
-        </h2>
-
-        
-        
-        <h2 class="encabezado__titulo">
-            Disponible: 
-            <p id="restante" class="encabezado__disponible">
+                <h2 class="encabezado__titulo">
+                    Gastos: 
+                </h2>
+                <p id="sumatoriaGastos" class="encabezado__montos">0</p>
                 
-            </p>
-        </h2>
-        
-    </header>
-
-
-    
-    <section class="marcoFiltros">
-        <h3 class="marcoFiltros__titulo">Filtros</h3>
-        
-        <div class="marcoFiltros__inputs">
                 
-            <div class="select">
-                <label for="filtrar">Filtrar por: </label>
-                <select id="categoria" onChange="seleccionarCategoria()">
-                    <option id="todo" value="Todo">Todo</option>
-                </select>
+                
+                <h2 class="encabezado__titulo">
+                    Disponible: 
+                </h2>
+                <p id="restante" class="encabezado__montos">0</p>
+                
             </div>
+        </header>
 
-            <div class="marcoFiltros__nuevaCategoria">
-                <label for="crearCategoria">Crear nueva categoria: </label>
-                <input type="text" name="" id="crearCategoria">
-                <button type="submit" id="BotonCrearCategoria">Crear</button>
-            </div>
-
-        </div>
         
-    </section>
-
-    <section class="marcoNuevoGasto">
-        <h3 class="marcoNuevoGasto__titulo">
-            Nuevo Gasto
-        </h3>
-        <div class="marcoNuevoGasto__marcoInputs">
-
-            <label for="categoriaNuevoGasto" class="marcoNuevoGasto__labels">Categoria:</label>
-            <select id="selectorDeCategorias" onChange="seleccionarCategoria()">
-                <option value="Sin categoria">Sin categoria</option>
-                <option value="Casa">Casa</option>
-                <option value="Auto">Auto</option>
-                <option value="Alimentos">Alimentos</option>
-                <option value="Entretenimiento">Entretenimiento</option>
-
-            </select>
+        
+        <section class="marcoFiltros">
+            <h3 class="marcoFiltros__titulo">FILTROS</h3>
             
-            <!-- <input type="text" name="categoriaNuevoGasto" id="categoriaNuevoGasto" class="marcoNuevoGasto__inputsGastos"> -->
-
-            <label for="descripcionNuevoGasto" class="marcoNuevoGasto__labels">Descripción:</label>
-            
-                <input type="text" name="descripcionNuevoGasto" id="descripcionNuevoGasto" class="marcoNuevoGasto__inputsGastos">
-            
-            
-            <label for="montoNuevoGasto" class="marcoNuevoGasto__labels">Monto:</label>
-            
-                <input type="number" name="montoNuevoGasto" id="montoNuevoGasto" class="marcoNuevoGasto__inputsGastos">
+            <div class="marcoFiltros__inputs">
                 
-            
-            <button id="boton" class="boton">Agregar</button>
-        
-        </div>
+                <div class="select">
+                    <label for="filtrar" class="marcoFiltros__labels">Filtrar por: </label>
+                    <select id="categoria" class="inputsBorderRadios" onChange="seleccionarCategoria()">
+                        <option id="todo" value="Todo">Todo</option>
+                    </select>
+                </div>
+                
+                <div class="marcoFiltros__nuevaCategoria">
+                    <label for="crearCategoria" class="marcoFiltros__labels">Crear nueva categoria:</label>
+                    <input type="text" name="" id="crearCategoria" class="inputsBorderRadios">
+                    <button type="submit" id="BotonCrearCategoria" class="boton">Crear</button>
+                </div>
+                
+            </div>
             
         </section>
-    
-    <section class="marcoListaDeGastos">
-        <h3 class="marcoListaDeGastos__titulo">Gastos Registrados</h3>
-        <div id="listaDeGastos">
+        
+        <section class="marcoNuevoGasto">
+            <h3 class="marcoNuevoGasto__titulo">
+                NUEVO GASTO
+            </h3>
+            <div class="marcoNuevoGasto__marcoInputs">
+                
+                <label for="categoriaNuevoGasto" class="marcoNuevoGasto__labels">Categoria:</label>
+                <select id="selectorDeCategorias" class="inputsBorderRadios" onChange="seleccionarCategoria()">
+                    <option value="Sin categoria">Sin categoria</option>
+                    <option value="Casa">Casa</option>
+                    <option value="Auto">Auto</option>
+                    <option value="Alimentos">Alimentos</option>
+                    <option value="Entretenimiento">Entretenimiento</option>
+                    
+                </select>
+                
+                <!-- <input type="text" name="categoriaNuevoGasto" id="categoriaNuevoGasto" class="marcoNuevoGasto__inputsGastos"> -->
+                
+                <label for="descripcionNuevoGasto" class="marcoNuevoGasto__labels">Descripción:</label>
+                
+                <input type="text" name="descripcionNuevoGasto" class="inputsBorderRadios" id="descripcionNuevoGasto" class="marcoNuevoGasto__inputsGastos">
+                
+                
+                <label for="montoNuevoGasto" class="marcoNuevoGasto__labels">Monto:</label>
+                
+                <input type="number" name="montoNuevoGasto" class="inputsBorderRadios" id="montoNuevoGasto" class="marcoNuevoGasto__inputsGastos">
+                
+                
+                <button id="boton" class="boton">Agregar</button>
+                
+            </div>
             
-        </div>
-    </section>
-
-    
-    <script src="JS/main.js"></script>
+        </section>
+        
+        <section class="marcoListaDeGastos">
+            <h3 class="marcoListaDeGastos__titulo">GASTOS REGISTRADOS</h3>
+            <div id="listaDeGastos">
+                <p class="listaDeGastos__sinGastos">Aun no has resgistrado ningun gasto</p> 
+            </div>
+        </section>
+        
+        
+        <script src="JS/main.js"></script>
+    </main>
 </body>
 </html>

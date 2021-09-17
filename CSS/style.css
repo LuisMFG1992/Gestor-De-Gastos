@@ -1,24 +1,56 @@
 @import url('https://fonts.googleapis.com/css2?family=Bree+Serif&family=Manrope:wght@300&display=swap');
+
+:root {
+    --color--bg: #071e3d;
+    --color--seccion--1: #1f4287;
+    --color--seccion--2: #278ea5;
+    --color--seccion--3: rgba(128, 128, 128, 0.282);
+    --color--seccion--4: rgba(219, 0, 0, 0.282);
+}
+
 * {
     font-family: 'Bree Serif', serif;
     font-weight: lighter;
 }
 
-.encabezado {
-    display: flex;
-    justify-content: space-evenly;
-    background: rgba(128, 128, 128, 0.439);
+body {
+    background: var(--color--bg);
 }
 
-.encabezado__titulo {
-    font-size: 1.2rem;
+.contenedor {
+    margin: 5rem auto;
+    width: 60%;
+}
+
+.encabezado {
+    background: var(--color--seccion--1);
+    border-radius: 1rem;
+    margin-bottom: 1rem;
+    
+}
+
+.encabezado__marco{  
+    display: flex;
+    justify-content: space-evenly;
+
+}
+
+.encabezado__tituloPrincipal {
+    text-align: center;
+    margin: 0;
+    padding: 1rem;
+}
+
+.encabezado__titulo, .encabezado__montos {
+    font-size: 1rem;
     text-align: center;
 }
 
 .marcoNuevoGasto {
-    background: rgba(128, 128, 128, 0.282);
+    background: var(--color--seccion--3);
+    border-radius: 1rem;
     padding-top: 1rem;
-    
+    margin-bottom: 1rem;
 }
 
 .marcoNuevoGasto__titulo {
@@ -30,24 +62,55 @@
     font-size: 1rem;
     border: 1.5px solid transparent;
     padding: 0 1rem;
-    /* display: inline-block;
-    width: 20rem;
-    text-align: right; */
+}
+
+.listaDeGastos__sinGastos{
+    font-size: 1rem;
+    margin: 0;
+    padding: 1rem 0 2rem 0;
 }
 
 .marcoNuevoGasto__marcoInputs {
     display: flex;
     justify-content: center;
-    padding: 1rem
-
+    padding: 1rem;
 }
 
 .marcoListaDeGastos {
     text-align: center;
+    background: var(--color--seccion--4);
+    border-radius: 1rem;
+
+}
+
+.marcoListaDeGastos__titulo {
+    margin: 0;
+    padding: 1rem;
+}
+
+.margin{
+    padding-bottom: 1rem;
+}
+
+.celdasConDatos:last-child{
+    margin-bottom: 1rem;
 }
 
 .boton {
     margin: 0 1rem;    
+    border-radius: 1rem;
+    border: transparent;
+    cursor: pointer;
+}
+
+.boton:hover {
+    background: rgb(75, 75, 75);
+    color: white;
+    box-shadow: 2px 2px 2px black;
+}
+
+.boton:active {
+    transform: scale(1.2);
 }
 
 
@@ -57,8 +120,11 @@
 
 
 .marcoFiltros {
-    background: rgb(155, 153, 153);
+    background: #278ea5;
     padding: 1rem;
+    border-radius: 1rem;
+    padding-top: 1rem;
+    margin-bottom: 1rem;
 }
 
 
@@ -68,10 +134,21 @@
     padding-bottom: 1rem;
 }
 
+.marcoFiltros__labels {
+    padding-right: 1rem;
+    font-size: 1rem;
+}
+
 .marcoFiltros__inputs {
     display:flex;
     justify-content: space-evenly;
     
+}
+
+.inputsBorderRadios {
+    border-radius: 1rem;
+    border: transparent;
+    text-align: center;
 }
 
 
@@ -89,10 +166,13 @@
     font-size:1.2rem;
     color: rgb(0, 0, 0);
     border: 1.5px solid black;
-    background: rgba(128, 128, 128, 0.439);    
+    border-radius: 1rem;
+    background: rgb(141, 141, 141); 
 }
 
 .celdasConDatos {
     border: 1.5px solid black;
     font-size: 1.2rem;
+    border-radius: 1rem;
+    background: white;    
 }
