@@ -31,6 +31,19 @@ let gastos = [];
 
 
 
+
+
+
+// ******************* EVENTOS *******************//
+
+
+
+
+
+// ** AGREGA LOS GASTOS NUEVOS A LISTADO DE GASTOS **//
+
+document.getElementById("boton").onclick = () => {agregarGastoALista()};
+
 function agregarGastoALista(){
     
     descripcionDelMovimiento = document.getElementById('descripcionNuevoGasto').value;
@@ -59,7 +72,7 @@ function agregarGastoALista(){
     let gastosRevertidosLS = JSON.parse(gastosRecuperadosLS)
     
 
-    let tablaGastos = `<table class="border">
+    let tablaGastos = `<table class="border margin">
                             <tr class="border">
                                 <th class="celdasConTitulos">Categoria</th>    
                                 <th class="celdasConTitulos">Descripción</th>
@@ -82,13 +95,28 @@ function agregarGastoALista(){
 
 };
 
-$("#BotonCrearCategoria").on("click", () => {
-    alert("Hola")
+
+
+// ** AGREGA OPCIONES A LA LISTA DE CATEGORIAS **//
+
+const botonCrearCategoriaNueva = document.getElementById("BotonCrearCategoria");
+
+botonCrearCategoriaNueva.addEventListener("click", () => {
+    
+    const nombreDeNuevaCategoria = document.getElementById("crearCategoria").value;
+    
+    const selectorDeCategorias = document.getElementById("selectorDeCategorias") 
+
+
+    const nuevaOpcion = document.createElement("option")
+
+    nuevaOpcion.setAttribute("valor", `${nombreDeNuevaCategoria}`)
+
+    nuevaOpcion.innerHTML = nombreDeNuevaCategoria;
+
+    
+    selectorDeCategorias.append(nuevaOpcion)
+
+    // const nuevaCategoria = `<option>${nombreDeNuevaCategoria}</option>` 
 })
-
-// ******************* EVENTOS *******************//
-
-document.getElementById("boton").onclick = () => {agregarGastoALista()};
-
-
 
