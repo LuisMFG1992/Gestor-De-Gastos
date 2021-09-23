@@ -8,9 +8,11 @@ sessionStorage.removeItem("listadaGastos")
 
 let montoDelMovimiento = null;
 
-let descripcionDelMovimiento = null;
+let descripcionDelMovimiento = null;    
 
 let gasto = null;
+
+let totalGastos = null;
 
 
 
@@ -28,8 +30,6 @@ let gastos = [];
 
 
 // ******************* FUNCIONES *******************//
-
-
 
 
 
@@ -93,6 +93,21 @@ function agregarGastoALista(){
 
     document.getElementById("listaDeGastos").innerHTML = tablaGastos;
 
+    gastos.forEach(elemento => {
+        totalGastos += elemento.monto; 
+    })
+    
+    const gastosSumados = document.getElementById("sumatoriaGastos");
+    
+    gastosSumados.innerText = totalGastos;
+
+    const restante = document.getElementById("restante") 
+
+    const montoRestante = montoDisponible - parseInt(gastosSumados.innerText); 
+
+    restante.innerHTML = montoRestante;
+
+
 };
 
 
@@ -107,16 +122,38 @@ botonCrearCategoriaNueva.addEventListener("click", () => {
     
     const selectorDeCategorias = document.getElementById("selectorDeCategorias") 
 
+    const selectorDeFiltro = document.getElementById("categoria")
 
     const nuevaOpcion = document.createElement("option")
 
+    const nuevaOpcion2 = document.createElement("option")
+
     nuevaOpcion.setAttribute("valor", `${nombreDeNuevaCategoria}`)
+    nuevaOpcion2.setAttribute("valor", `${nombreDeNuevaCategoria}`)
 
     nuevaOpcion.innerHTML = nombreDeNuevaCategoria;
+    nuevaOpcion2.innerHTML = nombreDeNuevaCategoria;
 
     
-    selectorDeCategorias.append(nuevaOpcion)
+    selectorDeCategorias.append(nuevaOpcion);
+
+    selectorDeFiltro.append(nuevaOpcion2);
 
     // const nuevaCategoria = `<option>${nombreDeNuevaCategoria}</option>` 
 })
 
+
+// ** SELECCIONAR FILTRO **//
+
+// ** TODO: Ver pq me tira indefinido el valor del select en la consola
+
+
+function seleccionarFiltro () {
+    
+    const filtroDeCategorias = document.getElementById("categoria").value;
+
+    const filtro = filtroDeCategorias.value;
+
+    console.log(filtro)
+
+}

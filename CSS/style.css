@@ -1,11 +1,12 @@
 @import url('https://fonts.googleapis.com/css2?family=Bree+Serif&family=Manrope:wght@300&display=swap');
 
 :root {
-    --color--bg: #071e3d;
+    --color--bg: #012C59;
     --color--seccion--1: #1f4287;
     --color--seccion--2: #278ea5;
     --color--seccion--3: rgba(128, 128, 128, 0.282);
     --color--seccion--4: rgba(219, 0, 0, 0.282);
+    --color--titulos: #21e6c1;
 }
 
 * {
@@ -39,6 +40,7 @@ body {
     text-align: center;
     margin: 0;
     padding: 1rem;
+    color: black;
 }
 
 .encabezado__titulo, .encabezado__montos {
@@ -73,6 +75,7 @@ body {
 .marcoNuevoGasto__marcoInputs {
     display: flex;
     justify-content: center;
+    flex-wrap: wrap;
     padding: 1rem;
 }
 
