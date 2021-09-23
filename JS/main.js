@@ -76,7 +76,8 @@ function agregarGastoALista(){
                             <tr class="border">
                                 <th class="celdasConTitulos">Categoria</th>    
                                 <th class="celdasConTitulos">Descripción</th>
-                                <th class="celdasConTitulos">Monto</th>    
+                                <th class="celdasConTitulos">Pesos</th>    
+                                <th class="celdasConTitulos">Dolares</th> 
                             </tr>`
     
     for (let i = 0; i < gastosRevertidosLS.length; i++) {
@@ -85,6 +86,7 @@ function agregarGastoALista(){
                 <td class="celdasConDatos">${gastos[i].categoria}</td>
                 <td class="celdasConDatos">${gastos[i].descripcion}</td>
                 <td class="celdasConDatos">${gastos[i].monto}</td>
+                <td class="celdasConDatos"></td>
             </tr>
             `
     }
@@ -157,3 +159,9 @@ function seleccionarFiltro () {
     console.log(filtro)
 
 }
+
+
+// ** TO-DO: TOMA EL VALOR DEL DOLAR
+// $.get("https://www.dolarsi.com/api/api.php?type=valoresprincipales", function (valores, status){
+//     console.log(valores[1].casa.venta)
+// });
