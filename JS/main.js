@@ -29,9 +29,21 @@ document.getElementById("sumatoriaIngresos").innerHTML = montoDisponible;
 let gastos = []; 
 
 
+// ******************* CLASES *******************//
+
+class Gastos {
+    constructor (descripcion,monto,categoria) {
+        this.descripcion = descripcion,
+        this.monto = monto,
+        this.categoria = categoria
+    }
+
+    metodo(){
+        alert("No es posible registrar numeros negativos.")
+    }
+}
+
 // ******************* EVENTOS *******************//
-
-
 
 // ** AGREGA LOS GASTOS NUEVOS A LISTADO DE GASTOS **//
 
@@ -45,21 +57,23 @@ function agregarGastoALista() {
 
     montoDelMovimiento = parseInt(document.getElementById('montoNuevoGasto').value);
     
+    
     function resta (disponible, montoGastado) {
         return disponible - montoGastado
     }
-
     restandoGasto = resta (montoDisponible, montoDelMovimiento)
     
     let categoriaSeleccionada = document.getElementById('selectorDeCategorias').value;
-    
-    gasto = {
-        descripcion: descripcionDelMovimiento, 
-        monto: montoDelMovimiento,
-        categoria: categoriaSeleccionada
-    }
-    
+
+    const gasto = new Gastos (descripcionDelMovimiento, montoDelMovimiento, categoriaSeleccionada)
+
     gastos.push(gasto);
+    
+    if (montoDelMovimiento < 0) {
+        gasto.metodo();
+        gastos.pop();
+    }
+
 
     let gastosJSON = JSON.stringify(gastos);
 
