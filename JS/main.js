@@ -39,12 +39,17 @@ document.getElementById("boton").onclick = () => {agregarGastoALista()};
 
 function agregarGastoALista() {
 
-        
-    descripcionDelMovimiento = document.getElementById('descripcionNuevoGasto').value;
+
     
+    descripcionDelMovimiento = document.getElementById('descripcionNuevoGasto').value;
+
     montoDelMovimiento = parseInt(document.getElementById('montoNuevoGasto').value);
     
-    restandoGasto = montoDisponible -  montoDelMovimiento;
+    function resta (disponible, montoGastado) {
+        return disponible - montoGastado
+    }
+
+    restandoGasto = resta (montoDisponible, montoDelMovimiento)
     
     let categoriaSeleccionada = document.getElementById('selectorDeCategorias').value;
     
@@ -80,7 +85,7 @@ function agregarGastoALista() {
                 <td class="celdasConDatos">${gastos[i].categoria}</td>
                 <td class="celdasConDatos">${gastos[i].descripcion}</td>
                 <td class="celdasConDatos">${gastos[i].monto}</td>
-                <td class="celdasConDatos">${gastos[i].monto / parseInt(sessionStorage.getItem("valorDolarBlue"))}</td>
+                <td class="celdasConDatos">${(gastos[i].monto / parseInt(sessionStorage.getItem("valorDolarBlue"))).toFixed(1)}</td>
             </tr>
             `
     }
@@ -148,13 +153,3 @@ $.get("https://www.dolarsi.com/api/api.php?type=valoresprincipales", function (v
 
 
 
-
-let botonNombre = document.getElementById("agregarNombre") 
-let nombre2 = document.getElementById("nuevoNombre")
-
-
-botonNombre.addEventListener("click", insertarNombre(nombre2.value))
-
-function insertarNombre (nombre) {
-    console.log(nombre)
-}
