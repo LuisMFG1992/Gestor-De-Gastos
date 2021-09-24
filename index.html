@@ -10,9 +10,16 @@
     <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
 </head>
 <body>
+
+    
+    
+    
     <main class="contenedor">
         <header class="encabezado">
             <h3 class="encabezado__tituloPrincipal">BALANCES</h3>
+            <!-- <input type="text" id="nuevoNombre">
+            <button id="agregarNombre">Agregar</button> -->
+
             <div class="encabezado__marco">
                 
                 <h2 class="encabezado__titulo">
@@ -45,7 +52,7 @@
                 
                 <div class="select">
                     <label for="filtrar" class="marcoFiltros__labels">Filtrar por: </label>
-                    <select id="categoria" class="inputsBorderRadios" onChange="seleccionarFiltro()">
+                    <select id="categoria" class="inputsBorderRadios">
                         <option id="todo" value="Todo">Todo</option>
                         <option value="Sin categoria">Sin categoria</option>
                         <option value="Casa">Casa</option>
@@ -80,17 +87,15 @@
                     <option value="Entretenimiento">Entretenimiento</option>
                     
                 </select>
-                
-                <!-- <input type="text" name="categoriaNuevoGasto" id="categoriaNuevoGasto" class="marcoNuevoGasto__inputsGastos"> -->
-                
+                                
                 <label for="descripcionNuevoGasto" class="marcoNuevoGasto__labels">Descripción:</label>
                 
-                <input type="text" name="descripcionNuevoGasto" class="inputsBorderRadios" id="descripcionNuevoGasto" class="marcoNuevoGasto__inputsGastos">
+                <input type="text" name="descripcionNuevoGasto" class="inputsBorderRadios marcoNuevoGasto__inputsGastos" id="descripcionNuevoGasto">
                 
                 
                 <label for="montoNuevoGasto" class="marcoNuevoGasto__labels">Monto:</label>
                 
-                <input type="number" name="montoNuevoGasto" class="inputsBorderRadios" id="montoNuevoGasto" class="marcoNuevoGasto__inputsGastos">
+                <input type="number" name="montoNuevoGasto" class="inputsBorderRadios marcoNuevoGasto__inputsGastos" id="montoNuevoGasto">
                 
                 
                 <button id="boton" class="boton">Agregar</button>
