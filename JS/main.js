@@ -4,7 +4,7 @@ sessionStorage.removeItem("listadaGastos")
 
 
 
-// ******************* VARIABLES NULL *******************//
+// ******************* VARIABLES NULL **********************************//
 
 let montoDelMovimiento = null;
 
@@ -24,19 +24,12 @@ document.getElementById("sumatoriaIngresos").innerHTML = montoDisponible;
 
 
 
-// ******************* ARRAYS *******************//
+// **************************** ARRAYS *********************************//
 
 let gastos = []; 
 
 
-// ******************* FUNCIONES *******************//
-
-
-
-
 // ******************* EVENTOS *******************//
-
-
 
 
 
@@ -44,8 +37,9 @@ let gastos = [];
 
 document.getElementById("boton").onclick = () => {agregarGastoALista()};
 
-function agregarGastoALista(){
-    
+function agregarGastoALista() {
+
+        
     descripcionDelMovimiento = document.getElementById('descripcionNuevoGasto').value;
     
     montoDelMovimiento = parseInt(document.getElementById('montoNuevoGasto').value);
@@ -86,7 +80,7 @@ function agregarGastoALista(){
                 <td class="celdasConDatos">${gastos[i].categoria}</td>
                 <td class="celdasConDatos">${gastos[i].descripcion}</td>
                 <td class="celdasConDatos">${gastos[i].monto}</td>
-                <td class="celdasConDatos"></td>
+                <td class="celdasConDatos">${gastos[i].monto / parseInt(sessionStorage.getItem("valorDolarBlue"))}</td>
             </tr>
             `
     }
@@ -140,28 +134,27 @@ botonCrearCategoriaNueva.addEventListener("click", () => {
     selectorDeCategorias.append(nuevaOpcion);
 
     selectorDeFiltro.append(nuevaOpcion2);
-
-    // const nuevaCategoria = `<option>${nombreDeNuevaCategoria}</option>` 
 })
 
 
-// ** SELECCIONAR FILTRO **//
-
-// ** TODO: Ver pq me tira indefinido el valor del select en la consola
-
-
-function seleccionarFiltro () {
-    
-    const filtroDeCategorias = document.getElementById("categoria").value;
-
-    const filtro = filtroDeCategorias.value;
-
-    console.log(filtro)
-
-}
-
-
 // ** TO-DO: TOMA EL VALOR DEL DOLAR
-// $.get("https://www.dolarsi.com/api/api.php?type=valoresprincipales", function (valores, status){
-//     console.log(valores[1].casa.venta)
-// });
+$.get("https://www.dolarsi.com/api/api.php?type=valoresprincipales", function (valores){
+    sessionStorage.setItem( "valorDolarBlue", valores[1].casa.venta)
+});
+
+
+
+
+
+
+
+
+let botonNombre = document.getElementById("agregarNombre") 
+let nombre2 = document.getElementById("nuevoNombre")
+
+
+botonNombre.addEventListener("click", insertarNombre(nombre2.value))
+
+function insertarNombre (nombre) {
+    console.log(nombre)
+}
