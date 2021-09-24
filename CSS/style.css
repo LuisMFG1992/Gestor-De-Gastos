@@ -23,6 +23,12 @@ body {
     width: 60%;
 }
 
+.marcoIngresos {
+    display: flex;
+    justify-content: center;
+    padding: 1rem 0;
+}
+
 .encabezado {
     background: var(--color--seccion--1);
     border-radius: 1rem;

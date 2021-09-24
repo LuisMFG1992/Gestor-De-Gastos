@@ -18,6 +18,7 @@ let totalGastos = null;
 
 // ******************* RECOPILACION DE DATOS USUARIO *******************//
 
+
 let montoDisponible = parseInt(prompt(`Bienvenido para poder empezar necesitarimos definir de cuantos pesos es tu ingreso mensual luego de impuestos.`));
 
 document.getElementById("sumatoriaIngresos").innerHTML = montoDisponible;
