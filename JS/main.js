@@ -61,6 +61,7 @@ function agregarGastoALista() {
     function resta (disponible, montoGastado) {
         return disponible - montoGastado
     }
+    
     restandoGasto = resta (montoDisponible, montoDelMovimiento)
     
     let categoriaSeleccionada = document.getElementById('selectorDeCategorias').value;
@@ -85,7 +86,7 @@ function agregarGastoALista() {
     let gastosRevertidosLS = JSON.parse(gastosRecuperadosLS)
     
 
-    let tablaGastos = `<table class="border margin">
+    let tablaGastos = `<table class="border margin" id="table">
                             <tr class="border">
                                 <th class="celdasConTitulos">Categoria</th>    
                                 <th class="celdasConTitulos">Descripción</th>
@@ -103,11 +104,13 @@ function agregarGastoALista() {
             </tr>
             `
     }
-
+ 
     tablaGastos += `</table>`
-
+    
     document.getElementById("listaDeGastos").innerHTML = tablaGastos;
 
+    $("#table").hide().html(tablaGastos).fadeIn();
+    
     gastos.forEach(elemento => {
         totalGastos += elemento.monto; 
     })
@@ -121,7 +124,6 @@ function agregarGastoALista() {
     const montoRestante = montoDisponible - parseInt(gastosSumados.innerText); 
 
     restante.innerHTML = montoRestante;
-
 
 };
 
@@ -155,12 +157,23 @@ botonCrearCategoriaNueva.addEventListener("click", () => {
     selectorDeFiltro.append(nuevaOpcion2);
 })
 
+// ****************** API ***************//
 
-// ** TO-DO: TOMA EL VALOR DEL DOLAR
 $.get("https://www.dolarsi.com/api/api.php?type=valoresprincipales", function (valores){
     sessionStorage.setItem( "valorDolarBlue", valores[1].casa.venta)
 });
 
+// ************** ANIMACIONES **************** //
+
+
+// $("#boton").on("click", () => {
+
+//     $("#boton").animate({height: "300px"}, () => {
+        
+//         $("#boton").animate({height: "100px"})
+
+//     });
+// })
 
 
 
