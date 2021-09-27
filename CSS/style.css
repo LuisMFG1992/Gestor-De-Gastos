@@ -23,6 +23,12 @@ body {
     width: 60%;
 }
 
+.marcoIngresos {
+    display: flex;
+    justify-content: center;
+    padding: 1rem 0;
+}
+
 .encabezado {
     background: var(--color--seccion--1);
     border-radius: 1rem;
@@ -113,7 +119,10 @@ body {
 
 .boton:active {
     transform: scale(1.2);
+    
 }
+
+
 
 
 
@@ -153,6 +162,10 @@ body {
     text-align: center;
 }
 
+/* .inputsBorderRadios:focus {
+    border:none
+} */
+
 
 /*************** DINAMICO ****************/
 
@@ -177,4 +190,11 @@ body {
     font-size: 1.2rem;
     border-radius: 1rem;
     background: white;    
+}
+
+
+
+
+.noValido {
+    border: 2px solid red;
 }

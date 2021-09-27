@@ -4,7 +4,7 @@ sessionStorage.removeItem("listadaGastos")
 
 
 
-// ******************* VARIABLES NULL *******************//
+// ******************* VARIABLES NULL **********************************//
 
 let montoDelMovimiento = null;
 
@@ -18,49 +18,77 @@ let totalGastos = null;
 
 // ******************* RECOPILACION DE DATOS USUARIO *******************//
 
+
 let montoDisponible = parseInt(prompt(`Bienvenido para poder empezar necesitarimos definir de cuantos pesos es tu ingreso mensual luego de impuestos.`));
+
+
+
+// let boton = document.getElementById("botonAgregarIngreso");
+
+// let montoDisponible = null;
+
+// boton.addEventListener("click", () => {
+//     let montoDisponible = document.getElementById("nuevoIngreso").value
+//     // console.log(nuevoIngreso)
+//     document.getElementById("sumatoriaIngresos").innerHTML = montoDisponible; 
+// })
+
+
 
 document.getElementById("sumatoriaIngresos").innerHTML = montoDisponible;
 
 
 
-// ******************* ARRAYS *******************//
+// **************************** ARRAYS *********************************//
 
 let gastos = []; 
 
+// ******************* CLASES *******************//
 
-// ******************* FUNCIONES *******************//
+class Gastos {
+    constructor (descripcion,monto,categoria) {
+        this.descripcion = descripcion,
+        this.monto = monto,
+        this.categoria = categoria
+    }
 
-
-
+    metodo(){
+        alert("No es posible registrar numeros negativos.")
+    }
+}
 
 // ******************* EVENTOS *******************//
-
-
-
-
 
 // ** AGREGA LOS GASTOS NUEVOS A LISTADO DE GASTOS **//
 
 document.getElementById("boton").onclick = () => {agregarGastoALista()};
 
-function agregarGastoALista(){
+function agregarGastoALista() {
+
+
     
     descripcionDelMovimiento = document.getElementById('descripcionNuevoGasto').value;
-    
+
     montoDelMovimiento = parseInt(document.getElementById('montoNuevoGasto').value);
     
-    restandoGasto = montoDisponible -  montoDelMovimiento;
     
-    let categoriaSeleccionada = document.getElementById('selectorDeCategorias').value;
-    
-    gasto = {
-        descripcion: descripcionDelMovimiento, 
-        monto: montoDelMovimiento,
-        categoria: categoriaSeleccionada
+    function resta (disponible, montoGastado) {
+        return disponible - montoGastado
     }
     
+    restandoGasto = resta (montoDisponible, montoDelMovimiento)
+    
+    let categoriaSeleccionada = document.getElementById('selectorDeCategorias').value;
+
+    const gasto = new Gastos (descripcionDelMovimiento, montoDelMovimiento, categoriaSeleccionada)
+
     gastos.push(gasto);
+    
+    if (montoDelMovimiento < 0) {
+        gasto.metodo();
+        gastos.pop();
+    }
+
 
     let gastosJSON = JSON.stringify(gastos);
 
@@ -72,7 +100,7 @@ function agregarGastoALista(){
     let gastosRevertidosLS = JSON.parse(gastosRecuperadosLS)
     
 
-    let tablaGastos = `<table class="border margin">
+    let tablaGastos = `<table class="border margin" id="table">
                             <tr class="border">
                                 <th class="celdasConTitulos">Categoria</th>    
                                 <th class="celdasConTitulos">Descripción</th>
@@ -86,15 +114,17 @@ function agregarGastoALista(){
                 <td class="celdasConDatos">${gastos[i].categoria}</td>
                 <td class="celdasConDatos">${gastos[i].descripcion}</td>
                 <td class="celdasConDatos">${gastos[i].monto}</td>
-                <td class="celdasConDatos"></td>
+                <td class="celdasConDatos">${(gastos[i].monto / parseInt(sessionStorage.getItem("valorDolarBlue"))).toFixed(1)}</td>
             </tr>
             `
     }
-
+ 
     tablaGastos += `</table>`
-
+    
     document.getElementById("listaDeGastos").innerHTML = tablaGastos;
 
+    $("#table").hide().html(tablaGastos).fadeIn();
+    
     gastos.forEach(elemento => {
         totalGastos += elemento.monto; 
     })
@@ -108,7 +138,6 @@ function agregarGastoALista(){
     const montoRestante = montoDisponible - parseInt(gastosSumados.innerText); 
 
     restante.innerHTML = montoRestante;
-
 
 };
 
@@ -130,38 +159,39 @@ botonCrearCategoriaNueva.addEventListener("click", () => {
 
     const nuevaOpcion2 = document.createElement("option")
 
-    nuevaOpcion.setAttribute("valor", `${nombreDeNuevaCategoria}`)
-    nuevaOpcion2.setAttribute("valor", `${nombreDeNuevaCategoria}`)
-
-    nuevaOpcion.innerHTML = nombreDeNuevaCategoria;
-    nuevaOpcion2.innerHTML = nombreDeNuevaCategoria;
-
     
-    selectorDeCategorias.append(nuevaOpcion);
+    if (nombreDeNuevaCategoria == "") {
+        // document.getElementById("crearCategoria").className += " noValido"
+        alert("Debe escribir el nombre de la nueva categoria antes de pulsar el boton crear.")
+    }else{
+        
+        document.getElementById("crearCategoria").className = "inputsBorderRadios"
 
-    selectorDeFiltro.append(nuevaOpcion2);
+        nuevaOpcion.setAttribute("valor", `${nombreDeNuevaCategoria}`)
+        nuevaOpcion2.setAttribute("valor", `${nombreDeNuevaCategoria}`)
+    
+        nuevaOpcion.innerHTML = nombreDeNuevaCategoria;
+        nuevaOpcion2.innerHTML = nombreDeNuevaCategoria;
+    
+        
+        selectorDeCategorias.append(nuevaOpcion);
+    
+        selectorDeFiltro.append(nuevaOpcion2);
 
-    // const nuevaCategoria = `<option>${nombreDeNuevaCategoria}</option>` 
+    }
+
 })
 
+// ****************** API ***************//
 
-// ** SELECCIONAR FILTRO **//
+$.get("https://www.dolarsi.com/api/api.php?type=valoresprincipales", function (valores){
+    sessionStorage.setItem( "valorDolarBlue", valores[1].casa.venta)
+});
 
-// ** TODO: Ver pq me tira indefinido el valor del select en la consola
-
-
-function seleccionarFiltro () {
-    
-    const filtroDeCategorias = document.getElementById("categoria").value;
-
-    const filtro = filtroDeCategorias.value;
-
-    console.log(filtro)
-
-}
+// ************** ANIMACIONES **************** //
 
 
-// ** TO-DO: TOMA EL VALOR DEL DOLAR
-// $.get("https://www.dolarsi.com/api/api.php?type=valoresprincipales", function (valores, status){
-//     console.log(valores[1].casa.venta)
-// });
+
+
+
+
