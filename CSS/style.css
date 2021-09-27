@@ -162,6 +162,10 @@ body {
     text-align: center;
 }
 
+/* .inputsBorderRadios:focus {
+    border:none
+} */
+
 
 /*************** DINAMICO ****************/
 
@@ -186,4 +190,11 @@ body {
     font-size: 1.2rem;
     border-radius: 1rem;
     background: white;    
+}
+
+
+
+
+.noValido {
+    border: 2px solid red;
 }

@@ -21,6 +21,20 @@ let totalGastos = null;
 
 let montoDisponible = parseInt(prompt(`Bienvenido para poder empezar necesitarimos definir de cuantos pesos es tu ingreso mensual luego de impuestos.`));
 
+
+
+// let boton = document.getElementById("botonAgregarIngreso");
+
+// let montoDisponible = null;
+
+// boton.addEventListener("click", () => {
+//     let montoDisponible = document.getElementById("nuevoIngreso").value
+//     // console.log(nuevoIngreso)
+//     document.getElementById("sumatoriaIngresos").innerHTML = montoDisponible; 
+// })
+
+
+
 document.getElementById("sumatoriaIngresos").innerHTML = montoDisponible;
 
 
@@ -28,7 +42,6 @@ document.getElementById("sumatoriaIngresos").innerHTML = montoDisponible;
 // **************************** ARRAYS *********************************//
 
 let gastos = []; 
-
 
 // ******************* CLASES *******************//
 
@@ -146,16 +159,27 @@ botonCrearCategoriaNueva.addEventListener("click", () => {
 
     const nuevaOpcion2 = document.createElement("option")
 
-    nuevaOpcion.setAttribute("valor", `${nombreDeNuevaCategoria}`)
-    nuevaOpcion2.setAttribute("valor", `${nombreDeNuevaCategoria}`)
-
-    nuevaOpcion.innerHTML = nombreDeNuevaCategoria;
-    nuevaOpcion2.innerHTML = nombreDeNuevaCategoria;
-
     
-    selectorDeCategorias.append(nuevaOpcion);
+    if (nombreDeNuevaCategoria == "") {
+        // document.getElementById("crearCategoria").className += " noValido"
+        alert("Debe escribir el nombre de la nueva categoria antes de pulsar el boton crear.")
+    }else{
+        
+        document.getElementById("crearCategoria").className = "inputsBorderRadios"
 
-    selectorDeFiltro.append(nuevaOpcion2);
+        nuevaOpcion.setAttribute("valor", `${nombreDeNuevaCategoria}`)
+        nuevaOpcion2.setAttribute("valor", `${nombreDeNuevaCategoria}`)
+    
+        nuevaOpcion.innerHTML = nombreDeNuevaCategoria;
+        nuevaOpcion2.innerHTML = nombreDeNuevaCategoria;
+    
+        
+        selectorDeCategorias.append(nuevaOpcion);
+    
+        selectorDeFiltro.append(nuevaOpcion2);
+
+    }
+
 })
 
 // ****************** API ***************//
@@ -165,16 +189,6 @@ $.get("https://www.dolarsi.com/api/api.php?type=valoresprincipales", function (v
 });
 
 // ************** ANIMACIONES **************** //
-
-
-// $("#boton").on("click", () => {
-
-//     $("#boton").animate({height: "300px"}, () => {
-        
-//         $("#boton").animate({height: "100px"})
-
-//     });
-// })
 
 
 
