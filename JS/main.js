@@ -3,7 +3,6 @@
 sessionStorage.removeItem("listadaGastos")
 
 
-
 // ******************* VARIABLES NULL **********************************//
 
 let montoDelMovimiento = null;
@@ -19,21 +18,17 @@ let totalGastos = null;
 // ******************* RECOPILACION DE DATOS USUARIO *******************//
 
 
-let montoDisponible = parseInt(prompt(`Bienvenido para poder empezar necesitarimos definir de cuantos pesos es tu ingreso mensual luego de impuestos.`));
 
 
 
-// let boton = document.getElementById("botonAgregarIngreso");
+let boton = document.getElementById("botonAgregarIngreso");
 
-// let montoDisponible = null;
+let montoDisponible = null;
 
-// boton.addEventListener("click", () => {
-//     let montoDisponible = document.getElementById("nuevoIngreso").value
-//     // console.log(nuevoIngreso)
-//     document.getElementById("sumatoriaIngresos").innerHTML = montoDisponible; 
-// })
-
-
+boton.addEventListener("click", () => {
+    montoDisponible = document.getElementById("nuevoIngreso").value
+    document.getElementById("sumatoriaIngresos").innerText = montoDisponible; 
+})
 
 document.getElementById("sumatoriaIngresos").innerHTML = montoDisponible;
 
@@ -64,13 +59,10 @@ class Gastos {
 document.getElementById("boton").onclick = () => {agregarGastoALista()};
 
 function agregarGastoALista() {
-
-
     
     descripcionDelMovimiento = document.getElementById('descripcionNuevoGasto').value;
 
     montoDelMovimiento = parseInt(document.getElementById('montoNuevoGasto').value);
-    
     
     function resta (disponible, montoGastado) {
         return disponible - montoGastado
@@ -118,16 +110,14 @@ function agregarGastoALista() {
             </tr>
             `
     }
- 
+
     tablaGastos += `</table>`
     
     document.getElementById("listaDeGastos").innerHTML = tablaGastos;
 
     $("#table").hide().html(tablaGastos).fadeIn();
-    
-    gastos.forEach(elemento => {
-        totalGastos += elemento.monto; 
-    })
+
+    totalGastos += montoDelMovimiento;
     
     const gastosSumados = document.getElementById("sumatoriaGastos");
     
@@ -189,9 +179,3 @@ $.get("https://www.dolarsi.com/api/api.php?type=valoresprincipales", function (v
 });
 
 // ************** ANIMACIONES **************** //
-
-
-
-
-
-
