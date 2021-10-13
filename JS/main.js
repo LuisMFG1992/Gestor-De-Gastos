@@ -1,7 +1,10 @@
+// **************************** ARRAYS *********************************//
+
+let gastos = []; 
+
 //** SE BORRARAN LOS DATOS GUARDADOS EN EL LISTADAGASTOS CADA QUE SE RECARGUE LA PAGINA */
 
-sessionStorage.removeItem("listadaGastos")
-
+// localStorage.clear()
 
 
 // ******************* VARIABLES NULL **********************************//
@@ -19,29 +22,56 @@ let totalGastos = null;
 // ******************* RECOPILACION DE DATOS USUARIO *******************//
 
 
-let montoDisponible = parseInt(prompt(`Bienvenido para poder empezar necesitarimos definir de cuantos pesos es tu ingreso mensual luego de impuestos.`));
 
 
+window.addEventListener('DOMContentLoaded', (event) => {
+    console.log('DOM fully loaded and parsed');
+    if (JSON.parse(localStorage.getItem("listadaGastos"))?.length) {
+        let gastosRecuperadosLS = localStorage.getItem("listadaGastos");
 
-// let boton = document.getElementById("botonAgregarIngreso");
+        let gastosRevertidosLS = JSON.parse(gastosRecuperadosLS)
+        gastos = gastosRevertidosLS    ? gastosRevertidosLS : []
 
-// let montoDisponible = null;
+        let tablaGastos = `<table class="border margin" id="table">
+                                <tr class="border">
+                                    <th class="celdasConTitulos">Categoria</th>    
+                                    <th class="celdasConTitulos">Descripción</th>
+                                    <th class="celdasConTitulos">Pesos</th>    
+                                    <th class="celdasConTitulos">Dolares</th> 
+                                </tr>`
+        
+        for (let i = 0; i < gastosRevertidosLS.length; i++) {
+            tablaGastos +=
+                `<tr>
+                    <td class="celdasConDatos">${gastosRevertidosLS[i].categoria}</td>
+                    <td class="celdasConDatos">${gastosRevertidosLS[i].descripcion}</td>
+                    <td class="celdasConDatos">${gastosRevertidosLS[i].monto}</td>
+                    <td class="celdasConDatos">${(gastosRevertidosLS[i].monto / parseInt(sessionStorage.getItem("valorDolarBlue"))).toFixed(1)}</td>
+                </tr>
+                `
+        }
 
-// boton.addEventListener("click", () => {
-//     let montoDisponible = document.getElementById("nuevoIngreso").value
-//     // console.log(nuevoIngreso)
-//     document.getElementById("sumatoriaIngresos").innerHTML = montoDisponible; 
-// })
+        tablaGastos += `</table>`
+        
+        document.getElementById("listaDeGastos").innerHTML = tablaGastos;
 
+        $("#table").hide().html(tablaGastos).fadeIn();
+    }
+});
 
+let boton = document.getElementById("botonAgregarIngreso");
+
+let montoDisponible = null;
+
+boton.addEventListener("click", () => {
+    montoDisponible = document.getElementById("nuevoIngreso").value
+    document.getElementById("sumatoriaIngresos").innerText = montoDisponible; 
+})
 
 document.getElementById("sumatoriaIngresos").innerHTML = montoDisponible;
 
 
 
-// **************************** ARRAYS *********************************//
-
-let gastos = []; 
 
 // ******************* CLASES *******************//
 
@@ -64,13 +94,10 @@ class Gastos {
 document.getElementById("boton").onclick = () => {agregarGastoALista()};
 
 function agregarGastoALista() {
-
-
     
     descripcionDelMovimiento = document.getElementById('descripcionNuevoGasto').value;
 
     montoDelMovimiento = parseInt(document.getElementById('montoNuevoGasto').value);
-    
     
     function resta (disponible, montoGastado) {
         return disponible - montoGastado
@@ -90,15 +117,18 @@ function agregarGastoALista() {
     }
 
 
-    let gastosJSON = JSON.stringify(gastos);
+    // let gastosJSON = JSON.stringify(gastos);
 
-    sessionStorage.setItem("listadaGastos", gastosJSON);
-
-
-    let gastosRecuperadosLS = sessionStorage.getItem("listadaGastos");
-
-    let gastosRevertidosLS = JSON.parse(gastosRecuperadosLS)
     
+    
+    // let gastosRecuperadosLS = localStorage.getItem("listadaGastos")
+    
+    // let gastosRevertidosLS = JSON.parse(gastosRecuperadosLS) ? JSON.parse(gastosRecuperadosLS) : []
+
+    // let todosLosGastos = [...gastosRevertidosLS, ...gastos]
+    // localStorage.removeItem('listadaGastos')
+    localStorage.setItem("listadaGastos", JSON.stringify(gastos));
+    debugger
 
     let tablaGastos = `<table class="border margin" id="table">
                             <tr class="border">
@@ -108,7 +138,7 @@ function agregarGastoALista() {
                                 <th class="celdasConTitulos">Dolares</th> 
                             </tr>`
     
-    for (let i = 0; i < gastosRevertidosLS.length; i++) {
+    for (let i = 0; i < gastos.length; i++) {
         tablaGastos +=
             `<tr>
                 <td class="celdasConDatos">${gastos[i].categoria}</td>
@@ -118,16 +148,14 @@ function agregarGastoALista() {
             </tr>
             `
     }
- 
+
     tablaGastos += `</table>`
     
     document.getElementById("listaDeGastos").innerHTML = tablaGastos;
 
     $("#table").hide().html(tablaGastos).fadeIn();
-    
-    gastos.forEach(elemento => {
-        totalGastos += elemento.monto; 
-    })
+
+    totalGastos += montoDelMovimiento;
     
     const gastosSumados = document.getElementById("sumatoriaGastos");
     
@@ -181,6 +209,42 @@ botonCrearCategoriaNueva.addEventListener("click", () => {
     }
 
 })
+
+// ****************** FUNCION DE FILTRADO ***************//
+
+const selectorDeFiltro = document.getElementById("categoria")
+
+selectorDeFiltro.addEventListener('change', () => {
+
+    const listadoDeGastosFiltrado = gastos.filter(gasto => gasto.categoria == selectorDeFiltro.value)
+
+    let tablaGastos = `<table class="border margin" id="table">
+                            <tr class="border">
+                                <th class="celdasConTitulos">Categoria</th>    
+                                <th class="celdasConTitulos">Descripción</th>
+                                <th class="celdasConTitulos">Pesos</th>    
+                                <th class="celdasConTitulos">Dolares</th> 
+                            </tr>`
+    
+    for (let i = 0; i < listadoDeGastosFiltrado.length; i++) {
+        tablaGastos +=
+            `<tr>
+                <td class="celdasConDatos">${listadoDeGastosFiltrado[i].categoria}</td>
+                <td class="celdasConDatos">${listadoDeGastosFiltrado[i].descripcion}</td>
+                <td class="celdasConDatos">${listadoDeGastosFiltrado[i].monto}</td>
+                <td class="celdasConDatos">${(listadoDeGastosFiltrado[i].monto / parseInt(sessionStorage.getItem("valorDolarBlue"))).toFixed(1)}</td>
+            </tr>
+            `
+    }
+
+    tablaGastos += `</table>`
+    
+    document.getElementById("listaDeGastos").innerHTML = tablaGastos;
+
+    debugger
+    
+})
+
 
 // ****************** API ***************//
 
