@@ -123,8 +123,26 @@ body {
 }
 
 
+.marcoBotonBorrarGastos {
+    display: flex;
+    justify-content: center;
+    padding: 1rem 0;
+}
 
+.botonBorrar {
+    border-radius: 1rem;
+}
 
+.botonBorrar:hover {
+    background: rgb(75, 75, 75);
+    color: white;
+    box-shadow: 2px 2px 2px black;
+}
+
+.botonBorrar:active {
+    transform: scale(1.2);
+    
+}
 
 
 

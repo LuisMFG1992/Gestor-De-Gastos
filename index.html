@@ -9,9 +9,7 @@
     <link rel="stylesheet" href="CSS/style.css">
     <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
 </head>
-<body>    
-    
-    
+<body>     
     <main class="contenedor">
         <header class="encabezado">
             <h3 class="encabezado__tituloPrincipal">BALANCES</h3>
@@ -45,9 +43,11 @@
                 <p id="restante" class="encabezado__montos">0</p>
                 
             </div>
-        </header>
 
-        
+            <div class="marcoBotonBorrarGastos">
+                <button id="botonBorrarGastos" class="botonBorrar">Borrar todos los gastos</button>
+            </div>
+        </header>
         
         <section class="marcoFiltros">
             <h3 class="marcoFiltros__titulo">FILTROS</h3>
@@ -114,8 +114,7 @@
                 <p class="listaDeGastos__sinGastos">Aun no has resgistrado ningun gasto.</p> 
             </div>
         </section>
-        
-        
+           
         <script src="JS/main.js"></script>
     </main>
 </body>

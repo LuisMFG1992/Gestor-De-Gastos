@@ -24,40 +24,38 @@ let totalGastos = null;
 
 
 
-window.addEventListener('DOMContentLoaded', (event) => {
-    console.log('DOM fully loaded and parsed');
-    if (JSON.parse(localStorage.getItem("listadaGastos"))?.length) {
-        let gastosRecuperadosLS = localStorage.getItem("listadaGastos");
 
-        let gastosRevertidosLS = JSON.parse(gastosRecuperadosLS)
-        gastos = gastosRevertidosLS    ? gastosRevertidosLS : []
+if (JSON.parse(localStorage.getItem("listadaGastos"))?.length) {
+    let gastosRecuperadosLS = localStorage.getItem("listadaGastos");
 
-        let tablaGastos = `<table class="border margin" id="table">
-                                <tr class="border">
-                                    <th class="celdasConTitulos">Categoria</th>    
-                                    <th class="celdasConTitulos">Descripción</th>
-                                    <th class="celdasConTitulos">Pesos</th>    
-                                    <th class="celdasConTitulos">Dolares</th> 
-                                </tr>`
-        
-        for (let i = 0; i < gastosRevertidosLS.length; i++) {
-            tablaGastos +=
-                `<tr>
-                    <td class="celdasConDatos">${gastosRevertidosLS[i].categoria}</td>
-                    <td class="celdasConDatos">${gastosRevertidosLS[i].descripcion}</td>
-                    <td class="celdasConDatos">${gastosRevertidosLS[i].monto}</td>
-                    <td class="celdasConDatos">${(gastosRevertidosLS[i].monto / parseInt(sessionStorage.getItem("valorDolarBlue"))).toFixed(1)}</td>
-                </tr>
-                `
-        }
+    let gastosRevertidosLS = JSON.parse(gastosRecuperadosLS)
+    gastos = gastosRevertidosLS    ? gastosRevertidosLS : []
 
-        tablaGastos += `</table>`
-        
-        document.getElementById("listaDeGastos").innerHTML = tablaGastos;
-
-        $("#table").hide().html(tablaGastos).fadeIn();
+    let tablaGastos = `<table class="border margin" id="table">
+                            <tr class="border">
+                                <th class="celdasConTitulos">Categoria</th>    
+                                <th class="celdasConTitulos">Descripción</th>
+                                <th class="celdasConTitulos">Pesos</th>    
+                                <th class="celdasConTitulos">Dolares</th> 
+                            </tr>`
+    
+    for (let i = 0; i < gastosRevertidosLS.length; i++) {
+        tablaGastos +=
+            `<tr>
+                <td class="celdasConDatos">${gastosRevertidosLS[i].categoria}</td>
+                <td class="celdasConDatos">${gastosRevertidosLS[i].descripcion}</td>
+                <td class="celdasConDatos">${gastosRevertidosLS[i].monto}</td>
+                <td class="celdasConDatos">${(gastosRevertidosLS[i].monto / parseInt(sessionStorage.getItem("valorDolarBlue"))).toFixed(1)}</td>
+            </tr>
+            `
     }
-});
+
+    tablaGastos += `</table>`
+    
+    document.getElementById("listaDeGastos").innerHTML = tablaGastos;
+
+    $("#table").hide().html(tablaGastos).fadeIn();
+}
 
 let boton = document.getElementById("botonAgregarIngreso");
 
@@ -116,19 +114,7 @@ function agregarGastoALista() {
         gastos.pop();
     }
 
-
-    // let gastosJSON = JSON.stringify(gastos);
-
-    
-    
-    // let gastosRecuperadosLS = localStorage.getItem("listadaGastos")
-    
-    // let gastosRevertidosLS = JSON.parse(gastosRecuperadosLS) ? JSON.parse(gastosRecuperadosLS) : []
-
-    // let todosLosGastos = [...gastosRevertidosLS, ...gastos]
-    // localStorage.removeItem('listadaGastos')
     localStorage.setItem("listadaGastos", JSON.stringify(gastos));
-    debugger
 
     let tablaGastos = `<table class="border margin" id="table">
                             <tr class="border">
