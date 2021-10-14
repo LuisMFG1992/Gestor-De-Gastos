@@ -77,7 +77,7 @@ class Gastos {
     }
 
     metodo(){
-        alert("No es posible registrar numeros negativos.")
+        alert("No es posible registrar numeros negativos o campo monto vacio.")
     }
 }
 
@@ -105,11 +105,11 @@ function agregarGastoALista() {
 
     gastos.push(gasto);
     
-    if (montoDelMovimiento < 0) {
+    if (montoDelMovimiento < 0 || montoDelMovimiento != Number) {
         gasto.metodo();
         gastos.pop();
     }
-
+    
     localStorage.setItem("listadaGastos", JSON.stringify(gastos));
 
     let tablaGastos = `<table class="border margin" id="table">
@@ -171,7 +171,6 @@ botonCrearCategoriaNueva.addEventListener("click", () => {
 
     
     if (nombreDeNuevaCategoria == "") {
-        // document.getElementById("crearCategoria").className += " noValido"
         alert("Debe escribir el nombre de la nueva categoria antes de pulsar el boton crear.")
     }else{
         
