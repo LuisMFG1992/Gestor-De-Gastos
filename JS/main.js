@@ -105,7 +105,7 @@ function agregarGastoALista() {
 
     gastos.push(gasto);
     
-    if (montoDelMovimiento < 0 || montoDelMovimiento != Number) {
+    if (montoDelMovimiento < 0 || montoDelMovimiento == "") {
         gasto.metodo();
         gastos.pop();
     }
