@@ -2,10 +2,6 @@
 
 let gastos = []; 
 
-//** SE BORRARAN LOS DATOS GUARDADOS EN EL LISTADAGASTOS CADA QUE SE RECARGUE LA PAGINA */
-
-// localStorage.clear()
-
 
 // ******************* VARIABLES NULL **********************************//
 
@@ -59,7 +55,7 @@ if (JSON.parse(localStorage.getItem("listadaGastos"))?.length) {
 
 let boton = document.getElementById("botonAgregarIngreso");
 
-let montoDisponible = null;
+let montoDisponible = 0;
 
 boton.addEventListener("click", () => {
     montoDisponible = document.getElementById("nuevoIngreso").value
@@ -196,6 +192,18 @@ botonCrearCategoriaNueva.addEventListener("click", () => {
 
 })
 
+// ****************** FUNCION DE BORRAR TODOS LOS GASTOS ***************//
+
+const botonBorrarGastos = document.getElementById('botonBorrarGastos')
+
+botonBorrarGastos.addEventListener("click", ()=> {
+    localStorage.clear()
+    location.reload();
+})
+
+
+
+
 // ****************** FUNCION DE FILTRADO ***************//
 
 const selectorDeFiltro = document.getElementById("categoria")
@@ -225,10 +233,7 @@ selectorDeFiltro.addEventListener('change', () => {
 
     tablaGastos += `</table>`
     
-    document.getElementById("listaDeGastos").innerHTML = tablaGastos;
-
-    debugger
-    
+    document.getElementById("listaDeGastos").innerHTML = tablaGastos;    
 })
 
 
